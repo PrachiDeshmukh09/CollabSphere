@@ -1,3 +1,4 @@
+
 :root {
   --bg: #0b1220;
   --surface: #121e30;
@@ -9,23 +10,64 @@
   --accent-dark: #1eae8b;
   --blue: #72a7ff;
   --danger: #e45c70;
+  --input-bg: #0d1828;
+  --header-bg: #101c2b;
+  --members-bg: #0f1a2a;
+  --pre-bg: #0d1828;
+  --pre-text: #a8e9d8;
+  --button-text: #08251e;
+  --welcome-bg: linear-gradient(120deg, #163b3b, #192c45);
 }
-html {
+
+[data-theme="light"] {
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --card: #ffffff;
+  --border: #e2e8f0;
+  --text: #1e293b;
+  --muted: #64748b;
+  --accent: #0d9b7b;
+  --accent-dark: #087f65;
+  --blue: #2563eb;
+  --danger: #dc3545;
+  --input-bg: #ffffff;
+  --header-bg: #ffffff;
+  --members-bg: #f1f5f9;
+  --pre-bg: #f1f5f9;
+  --pre-text: #334155;
+  --button-text: #ffffff;
+  --welcome-bg: linear-gradient(120deg, #e0f2f1, #eaf1ff);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
   min-height: 100%;
+  width: 100%;
+}
+
+html {
   scroll-behavior: smooth;
 }
+
 body {
-  min-height: 100vh;
-  width: 100%;
   background: var(--bg);
   color: var(--text);
   font-family: Inter, Arial, sans-serif;
   line-height: 1.6;
+  overflow-x: hidden;
+  transition: background 0.3s, color 0.3s;
 }
 #root {
-  min-height: 100vh;
-  width: 100%;
+  background: var(--bg);
 }
+
 h1, h2, h3, h4 {
   color: var(--text);
   line-height: 1.3;
@@ -34,51 +76,81 @@ h1, h2, h3, h4 {
 p {
   color: var(--muted);
 }
+
 a {
   color: var(--accent);
   text-decoration: none;
 }
 
 a:hover {
-  color: #8af0d5;
+  color: var(--accent-dark);
+}
+
+img {
+  max-width: 100%;
+  border-radius: 10px;
 }
 button {
   padding: 11px 18px;
+  margin: 5px;
   border: none;
   border-radius: 9px;
   background: var(--accent);
-  color: #08251e;
-  cursor: pointer;
+  color: var(--button-text);
   font-size: 14px;
   font-weight: 600;
-  transition: 0.25s ease;
-  margin: 5px;
+  cursor: pointer;
+  transition: 0.25s;
 }
+
 button:hover:not(:disabled) {
-  background: #70e7c8;
+  background: var(--accent-dark);
   transform: translateY(-2px);
-  box-shadow: 0 6px 18px #48d6b025;
 }
+
 button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
-  transform: none;
 }
+
 .primary-btn {
   background: var(--accent);
-  color: #08251e;
+  color: var(--button-text);
 }
+
 .delete-btn {
   background: #a9344c;
   color: white;
 }
-.delete-btn:hover:not(:disabled) {
+
+.delete-btn:hover {
   background: #d44760;
 }
+
 .logout-btn {
-  background: #24374b;
-  border: 1px solid var(--border);
+  background: var(--surface);
   color: var(--text);
+  border: 1px solid var(--border);
+}
+.header-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.header-actions button {
+  margin: 0;
+}
+
+.theme-toggle-btn {
+  position: static;
+  padding: 10px 16px;
+  border-radius: 25px;
+  background: var(--accent);
+  color: var(--button-text);
+  white-space: nowrap;
 }
 input,
 textarea,
@@ -88,47 +160,43 @@ select {
   margin: 10px 0;
   border: 1px solid var(--border);
   border-radius: 9px;
-  background: #0d1828;
+  background: var(--input-bg);
   color: var(--text);
   outline: none;
   font-size: 14px;
   font-family: inherit;
-  transition: 0.2s;
 }
+
 input:focus,
 textarea:focus,
 select:focus {
   border-color: var(--accent);
   box-shadow: 0 0 0 3px #48d6b018;
 }
+
 input::placeholder,
 textarea::placeholder {
-  color: #73869e;
+  color: var(--muted);
 }
+
 textarea {
   min-height: 110px;
   resize: vertical;
 }
 .login-page {
   min-height: 100vh;
+  width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
   padding: 25px;
   background:
-    radial-gradient(
-      circle at 15% 15%,
-      #17433f55,
-      transparent 35%
-    ),
-    radial-gradient(
-      circle at 85% 85%,
-      #183d6155,
-      transparent 35%
-    ),
+    radial-gradient(circle at 15% 15%, #17433f35, transparent 35%),
+    radial-gradient(circle at 85% 85%, #183d6135, transparent 35%),
     var(--bg);
 }
+
 .login-box,
 .login-page form {
   width: 100%;
@@ -137,18 +205,21 @@ textarea {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 18px;
-  box-shadow: 0 20px 60px #0005;
+  box-shadow: 0 20px 60px #0003;
 }
+
 .login-box h1,
 .login-page h1 {
   text-align: center;
   margin-bottom: 15px;
 }
+
 .login-box p,
 .login-page p {
   text-align: center;
   margin: 12px 0;
 }
+
 .login-box button,
 .login-page form button {
   width: 100%;
@@ -162,27 +233,25 @@ textarea {
   min-height: 100vh;
   width: 100%;
   background:
-    radial-gradient(
-      circle at 10% 0%,
-      #17413c25,
-      transparent 35%
-    ),
+    radial-gradient(circle at 10% 0%, #17413c20, transparent 35%),
     var(--bg);
 }
+
 .dash-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 20px;
   padding: 20px 5%;
-  background: #101c2b;
+  background: var(--header-bg);
   border-bottom: 1px solid var(--border);
 }
+
 .dash-header h1 {
   font-size: 25px;
   color: var(--accent);
-  letter-spacing: -0.5px;
 }
+
 .dash-main {
   width: 100%;
   max-width: 1350px;
@@ -197,17 +266,15 @@ textarea {
   padding: 35px;
   margin-bottom: 30px;
   border-radius: 18px;
-  background: linear-gradient(
-    120deg,
-    #163b3b,
-    #192c45
-  );
-  border: 1px solid #285451;
+  background: var(--welcome-bg);
+  border: 1px solid var(--border);
 }
+
 .welcome-box h2 {
   font-size: 29px;
   margin: 10px 0;
 }
+
 .welcome-tag,
 .section-label {
   color: var(--accent);
@@ -215,6 +282,7 @@ textarea {
   letter-spacing: 2px;
   font-weight: 700;
 }
+
 .welcome-icon {
   font-size: 55px;
   color: var(--accent);
@@ -225,6 +293,7 @@ textarea {
   gap: 20px;
   margin: 25px 0;
 }
+
 .stat-card {
   padding: 25px;
   border-radius: 15px;
@@ -237,21 +306,27 @@ textarea {
   transform: translateY(-4px);
   border-color: var(--accent);
 }
+
 .stat-card span {
   font-size: 28px;
 }
+
 .stat-card p {
   margin: 12px 0;
 }
+
 .stat-card h2 {
   font-size: 30px;
 }
+
 .purple-card {
-  border-bottom: 3px solid #48d6b0;
+  border-bottom: 3px solid var(--accent);
 }
+
 .blue-card {
-  border-bottom: 3px solid #72a7ff;
+  border-bottom: 3px solid var(--blue);
 }
+
 .pink-card {
   border-bottom: 3px solid #e58ab0;
 }
@@ -262,6 +337,7 @@ textarea {
   border: 1px solid var(--border);
   border-radius: 16px;
 }
+
 .section-heading {
   display: flex;
   justify-content: space-between;
@@ -269,21 +345,21 @@ textarea {
   gap: 15px;
   margin-bottom: 25px;
 }
+
 .section-heading h2 {
   margin: 8px 0;
 }
+
 .section-icon {
   font-size: 30px;
 }
 .projects {
   display: grid;
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(min(100%, 320px), 1fr)
-  );
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
   gap: 22px;
   width: 100%;
 }
+
 .project-card,
 .contribution-card {
   min-width: 0;
@@ -291,52 +367,59 @@ textarea {
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: 15px;
-  transition: 0.25s ease;
+  transition: 0.25s;
 }
+
 .project-card:hover,
 .contribution-card:hover {
   transform: translateY(-4px);
-  border-color: #48d6b080;
-  box-shadow: 0 12px 30px #0003;
+  border-color: var(--accent);
+  box-shadow: 0 12px 30px #0002;
 }
+
 .project-card h3,
 .contribution-card h3 {
   margin-bottom: 12px;
   font-size: 19px;
 }
+
 .project-card p,
 .contribution-card p {
   margin: 8px 0;
 }
+
 .project-title {
   display: flex;
   align-items: center;
   gap: 12px;
   margin-bottom: 15px;
 }
+
 .project-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
   margin: 15px 0;
 }
+
 .project-actions button {
   margin: 3px;
 }
 .members-box {
+  min-width: 0;
   padding: 17px;
   margin: 16px 0;
-  background: #0f1a2a;
-  border: 1px solid #25374c;
+  background: var(--members-bg);
+  border: 1px solid var(--border);
   border-radius: 12px;
-  min-width: 0;
 }
+
 .members-box h4 {
   margin-bottom: 12px;
 }
+
 .members-box p {
   overflow-wrap: anywhere;
-  word-break: break-word;
   line-height: 1.8;
 }
 .empty-text {
@@ -344,19 +427,41 @@ textarea {
   text-align: center;
   color: var(--muted);
 }
+
+pre {
+  padding: 20px;
+  margin-top: 15px;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  background: var(--pre-bg);
+  color: var(--pre-text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+iframe {
+  width: 100%;
+  margin: 15px 0;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
 .dashboard.login-page {
   display: block;
   max-width: 1350px;
   margin: auto;
   padding: 35px 30px;
 }
+
 .dashboard.login-page > h1 {
   font-size: 30px;
   margin-bottom: 20px;
 }
+
 .dashboard.login-page > h2 {
   margin: 25px 0 15px;
 }
+
 .dashboard.login-page > form {
   width: 100%;
   max-width: 100%;
@@ -366,77 +471,90 @@ textarea {
   border: 1px solid var(--border);
   border-radius: 15px;
 }
+
 .dashboard.login-page > form button {
   margin-top: 15px;
 }
+
 .dashboard.login-page .project-card {
   margin: 20px 0;
-}
-pre {
-  background: #0d1828;
-  color: #a8e9d8;
-  padding: 20px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  overflow-x: auto;
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-  margin-top: 15px;
-}
-img {
-  max-width: 100%;
-  border-radius: 10px;
-}
-iframe {
-  width: 100%;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  margin: 15px 0;
 }
 @media (max-width: 768px) {
   .stats {
     grid-template-columns: 1fr;
   }
+
   .welcome-box {
     padding: 23px;
   }
+
   .welcome-box h2 {
     font-size: 23px;
   }
+
   .dash-header {
     padding: 16px 20px;
   }
+
   .dash-header h1 {
     font-size: 20px;
   }
+
   .dash-main {
     padding: 22px 16px;
   }
+
   .dash-section {
     padding: 18px;
   }
+
   .project-actions button {
     flex: 1 1 auto;
   }
+
   .dashboard.login-page {
     padding: 22px 16px;
   }
 }
+
 @media (max-width: 480px) {
   .login-box,
   .login-page form {
     padding: 25px 20px;
   }
+
+  .dash-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
   .welcome-icon {
     display: none;
   }
+
   .section-heading {
     align-items: flex-start;
   }
+
   .project-card {
     padding: 18px;
   }
-  .dash-header {
-    flex-wrap: wrap;
-  }
+}
+body,
+#root,
+.dashboard,
+.login-page,
+.dash-header,
+.dash-section,
+.stat-card,
+.project-card,
+.contribution-card,
+.members-box {
+  transition: background-color 0.3s ease, color 0.3s ease,
+              border-color 0.3s ease;
 }
