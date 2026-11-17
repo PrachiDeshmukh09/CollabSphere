@@ -30,7 +30,7 @@ function Login() {
       window.location.href = "/dashboard";
 
     } catch (error) {
-      setError("Server se connection nahi ho paya.");
+      setError("Could not connect to the server");
     }
   }
 
