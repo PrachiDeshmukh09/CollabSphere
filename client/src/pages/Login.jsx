@@ -37,7 +37,7 @@ function Login() {
   return (
     <div className="login-page">
       <form className="login-box" onSubmit={handleLogin}>
-        <h1>Welcome Back!</h1>
+        <h1>Welcome Back</h1>
         <p>Login to your CollabSphere account</p>
         <input type="email" placeholder="Enter Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
 
